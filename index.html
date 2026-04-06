@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gerador de Orçamento Sinmag</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="topo-logo">
+  <img src="logo.png" alt="Sinmag Brasil" class="logo-sinmag" />
+</div>
+
+    <h1>Gerador de Orçamento Sinmag</h1>
+
+    <h2>Dados do Cliente</h2>
+    <div class="bloco">
+      <input id="clienteNome" type="text" placeholder="Nome / Razão Social" />
+      <input id="clienteContato" type="text" placeholder="Nome do Contato" />
+      <input id="clienteDoc" type="text" placeholder="CPF / CNPJ" />
+      <input id="clienteEndereco" type="text" placeholder="Endereço completo (Número, Bairro, Cidade, Estado)" />
+      <input id="clienteEmail" type="text" placeholder="E-mail" />
+      <input id="clienteTelefone" type="text" placeholder="Telefone" />
+    </div>
+
+    <h2>Condições Comerciais</h2>
+    <div class="bloco">
+      <input id="garantia" type="text" placeholder="Garantia" value="12 meses contra defeitos de fabricação" />
+      <input id="frete" type="text" placeholder="Frete" value="FOB - Por conta do cliente" />
+      <input id="instalacao" type="text" placeholder="Instalação" value="Não incluso" />
+      <input id="validade" type="text" placeholder="Validade da proposta" value="15 dias" />
+    </div>
+
+    <h2>Vendedor</h2>
+    <div class="bloco">
+      <input id="vendedorNome" type="text" placeholder="Nome do vendedor" />
+      <input id="vendedorTelefone" type="text" placeholder="Telefone do vendedor" />
+    </div>
+
+    <h2>Adicionar Produto</h2>
+    <div class="bloco">
+      <input id="produtoNome" type="text" placeholder="Produto / Modelo (Exemplo Amassadeira 25T)" />
+      <input id="produtoValor" type="text" placeholder="Valor unitário (Normalmente Tabela)" />
+      <input id="produtoQtd" type="number" min="1" value="1" placeholder="Quantidade" />
+      <input id="produtoDesconto" type="text" placeholder="% Desconto sem considerar forma de pagamento  " />
+      <input id="produtoVista" type="text" placeholder="Valor final" />
+      <input id="produtoObs" type="text" placeholder="Observação exemplo Mono/Trifasica" />
+      <input id="produtoPrazo" type="text" placeholder="Prazo de entrega (Pronta entrega, 2 meses, etc)" />
+      <button id="addProduto" type="button">Adicionar produto</button>
+    </div>
+
+    <h2>Produtos adicionados</h2>
+    <table id="tabelaProdutos">
+      <thead>
+        <tr>
+          <th>Produto</th>
+          <th>Valor Unitário</th>
+          <th>Qtd</th>
+          <th>Desconto</th>
+          <th>Valor Final</th>
+          <th>Obs</th>
+          <th>Prazo</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+<h2>Formas de pagamento</h2>
+
+<div class="bloco">
+  <select id="quantidadePagamentos">
+    <option value="1">1 forma de pagamento</option>
+    <option value="2">2 formas de pagamento</option>
+    <option value="3">3 formas de pagamento</option>
+  </select>
+</div>
+
+<div class="pagamentos-grid">
+
+  <!-- PAGAMENTO 1 -->
+  <div id="pagamento1" class="pagamento-box">
+    <h3>Pagamento 1</h3>
+
+    <div class="grid-pagamento">
+      <div class="campo campo-largo">
+        <label>Título</label>
+        <input id="pag1Titulo" type="text" value="Pagamento à vista" />
+      </div>
+
+      <div class="campo">
+        <label>Desconto adicional (%)</label>
+        <input id="pag1DescontoAdicional" type="number" value="10" />
+      </div>
+
+      <div class="campo">
+        <label>Entrada (%)</label>
+        <input id="pag1EntradaPercentual" type="number" value="100" />
+      </div>
+
+      <div class="campo">
+        <label>Número de parcelas</label>
+        <input id="pag1NumeroParcelas" type="number" value="0" />
+      </div>
+    </div>
+
+    <div class="resumo-pagamento" id="resumoPag1"></div>
+  </div>
+
+  <!-- PAGAMENTO 2 -->
+  <div id="pagamento2" class="pagamento-box" style="display:none;">
+    <h3>Pagamento 2</h3>
+
+    <div class="grid-pagamento">
+      <div class="campo campo-largo">
+        <label>Título</label>
+        <input id="pag2Titulo" type="text" value="Boleto" />
+      </div>
+
+      <div class="campo">
+        <label>Desconto adicional (%)</label>
+        <input id="pag2DescontoAdicional" type="number" value="0" />
+      </div>
+
+      <div class="campo">
+        <label>Entrada (%)</label>
+        <input id="pag2EntradaPercentual" type="number" value="30" />
+      </div>
+
+      <div class="campo">
+        <label>Número de parcelas</label>
+        <input id="pag2NumeroParcelas" type="number" value="4" />
+      </div>
+    </div>
+
+    <div class="resumo-pagamento" id="resumoPag2"></div>
+  </div>
+
+  <!-- PAGAMENTO 3 -->
+  <div id="pagamento3" class="pagamento-box" style="display:none;">
+    <h3>Pagamento 3</h3>
+
+    <div class="grid-pagamento">
+      <div class="campo campo-largo">
+        <label>Título</label>
+        <input id="pag3Titulo" type="text" value="Cartão de Crédito" />
+      </div>
+
+      <div class="campo">
+        <label>Desconto adicional (%)</label>
+        <input id="pag3DescontoAdicional" type="number" value="0" />
+      </div>
+
+      <div class="campo">
+        <label>Entrada (%)</label>
+        <input id="pag3EntradaPercentual" type="number" value="50" />
+      </div>
+
+      <div class="campo">
+        <label>Número de parcelas</label>
+        <input id="pag3NumeroParcelas" type="number" value="6" />
+      </div>
+    </div>
+
+    <div class="resumo-pagamento" id="resumoPag3"></div>
+  </div>
+
+</div>
+
+
+<h2>Observações finais</h2>
+<div class="bloco">
+  <textarea id="observacoesFinais" placeholder="Espaço livre para o vendedor escrever observações adicionais" rows="5"></textarea>
+</div>
+
+<div class="acoes">
+  <button id="gerarWord" type="button">Gerar Word</button>
+</div>
+</div>
+
+  <script src="https://unpkg.com/pizzip@3.1.8/dist/pizzip.min.js"></script>
+  <script src="https://unpkg.com/docxtemplater@3.46.0/build/docxtemplater.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
